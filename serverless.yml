@@ -1,0 +1,47 @@
+service: bcm
+
+frameworkVersion: '1'
+
+plugins:
+  # - serverless-websockets-plugin
+  - serverless-offline
+
+provider:
+  name: aws
+  runtime: nodejs12.x
+  stage: dev
+  region: us-east-1
+  websocketsApiRouteSelectionExpression: $request.body.action
+
+functions:
+  connectHandler:
+    handler: src/lambdas/websockets/connect.handler
+    events:
+      - websocket:
+          route: $connect
+  disconnectHandler:
+    handler: src/lambdas/websockets/disconnect.handler
+    events:
+      - websocket:
+          route: $disconnect
+  defaultHandler:
+    handler: src/lambdas/websockets/default.handler
+    events:
+      - websocket:
+          route: $default
+  enterRoomHandler:
+    handler: src/lambdas/websockets/enterRoom.handler
+    events:
+      - websocket:
+          route: enterRoom
+  exitRoomHandler:
+    handler: src/lambdas/websockets/exitRoom.handler
+    events:
+      - websocket:
+          route: exitRoom
+  sendmessageHandler:
+    handler: src/lambdas/websockets/sendmessage.handler
+    events:
+      - websocket:
+          route: sendmessage
+

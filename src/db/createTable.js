@@ -5,7 +5,7 @@ const tableParams = [
     {
         TableName: TABLENAME.WEBSOCKET_CONNECTIONS,
         KeySchema: [
-            { AttributeName: "roomId", KeyType: "HASH" },  //Partition key
+            { AttributeName: "roomId", KeyType: "HASH" },
             { AttributeName: "connectionId", KeyType: "RANGE" }
         ],
         AttributeDefinitions: [
@@ -28,9 +28,3 @@ const tableCreatePromises = tableParams.map((param) => {
 Promise.all(tableCreatePromises)
     .then(res => { console.log(res); })
     .catch(err => console.error(err));
-
-
-
-// let x = { "action": "enterRoom", "data": "dfgsdgdsfgd" };
-
-// { "action": "sendmessage", "msg": "Hello from the other side" }

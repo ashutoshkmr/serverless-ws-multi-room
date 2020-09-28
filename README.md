@@ -21,3 +21,8 @@
   ```bash
   $ serverless offline
   ```
+
+- ### connect using wscat
+  ```bash
+  $ wscat -c ws://localhost:3001
+  ```

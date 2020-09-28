@@ -3,7 +3,6 @@ service: multi-room-chat
 frameworkVersion: '2'
 
 plugins:
-  # - serverless-websockets-plugin
   - serverless-offline
 
 provider:
@@ -44,4 +43,3 @@ functions:
     events:
       - websocket:
           route: sendmessage
-

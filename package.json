@@ -6,6 +6,7 @@
     "serverless-websockets-plugin": "^1.0.0"
   },
   "devDependencies": {
+    "@types/aws-sdk": "^2.7.0",
     "aws-sdk": "2.751.0",
     "serverless-offline": "6.6.0"
   },

@@ -1,6 +1,6 @@
-service: bcm
+service: multi-room-chat
 
-frameworkVersion: '1'
+frameworkVersion: '2'
 
 plugins:
   # - serverless-websockets-plugin

@@ -8,6 +8,7 @@
   "devDependencies": {
     "@types/aws-sdk": "^2.7.0",
     "aws-sdk": "2.751.0",
+    "serverless": "^2.3.0",
     "serverless-offline": "6.6.0"
   },
   "scripts": {
@@ -15,5 +16,5 @@
   },
   "keywords": [],
   "author": "",
-  "license": "ISC"
+  "license": "MIT"
 }

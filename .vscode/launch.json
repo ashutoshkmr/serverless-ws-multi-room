@@ -1,0 +1,22 @@
+{
+    "configurations": [
+        {
+            "name": "Serverless offline",
+            "type": "node",
+            "request": "launch",
+            "runtimeArgs": [
+                "--inspect",
+                "--debug-port=9229"
+            ],
+            "program": "${workspaceFolder}/node_modules/serverless/bin/serverless.js",
+            "args": [
+                "offline"
+            ],
+            "port": 9229,
+            "console": "integratedTerminal",
+            "env": {
+                "SLS_DEBUG": "*",
+            }
+        }
+    ]
+}

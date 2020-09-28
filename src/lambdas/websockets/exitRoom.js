@@ -5,7 +5,7 @@ const { postToSocketClients } = require('../../utils/websocketUtil');
 
 exports.handler = (event) => {
     const connectionId = event.requestContext.connectionId;
-    const roomId = JSON.parse(event.body).data;
+    const { roomId } = JSON.parse(event.body).data;
 
     console.log("ExitRoom", connectionId, roomId);
 

@@ -5,7 +5,7 @@ const { postToSocketClients } = require('../../utils/websocketUtil');
 exports.handler = async event => {
     console.log("SendMessage");
 
-    const msg = JSON.parse(event.body).data;
+    const { msg } = JSON.parse(event.body).data;
 
     const connectionId = event.requestContext.connectionId;
 
@@ -13,31 +13,24 @@ exports.handler = async event => {
     const params = {
         TableName: TABLENAME.WEBSOCKET_CONNECTIONS,
         ProjectionExpression: "roomId, connectionId",
-        FilterExpression: "connectionId =: cid",
+        FilterExpression: "connectionId = :cid",
         ExpressionAttributeValues: {
-            ": cid": connectionId
+            ":cid": connectionId
         }
     };
 
-    let roomId;
+    const connectionRecords = await client.scan(params).promise();
 
-    while (roomId === undefined) {
-        try {
-            const data = await client.scan(params).promise();
-            roomId = data.Items[0].roomId;
-        } catch (e) {
-            console.error("Error", e);
-        }
-    }
+    const roomId = connectionRecords.Items[0].roomId;
 
     console.log("roomId", roomId);
 
     const params2 = {
         TableName: TABLENAME.WEBSOCKET_CONNECTIONS,
         ProjectionExpression: "roomId, connectionId",
-        KeyConditionExpression: "roomId =: rid",
+        KeyConditionExpression: "roomId = :rid",
         ExpressionAttributeValues: {
-            ": rid": roomId
+            ":rid": roomId
         }
     };
 
